@@ -11,6 +11,9 @@ class JohnCoffee_User_Profile {
 	public static $slack_channel_question_meta = 'slack_channel_question';
 	private $slack_channel_question;
 
+	public static $slack_slack_bot_language_meta = 'slack_bot_language';
+	private $slack_slack_bot_language;
+
 	public static $last_random_question_datetime_meta = 'last_random_question_date';
 	private $last_random_question_datetime;
 	
@@ -46,6 +49,21 @@ class JohnCoffee_User_Profile {
 	public function update_slack_channel_question( $new_channel ) {
 		$this->slack_channel_question = $new_channel;
 		update_user_meta( $this->user_id, self::$slack_channel_question_meta, $new_channel );
+	}
+
+	/**
+	 * The bot language
+	 */
+	public function get_bot_language() {
+		if ( empty( $this->slack_slack_bot_language ) ) {
+			$this->slack_slack_bot_language = get_user_meta( $this->user_id, self::$slack_slack_bot_language_meta, TRUE );
+		}
+		return $this->slack_slack_bot_language;
+	}
+
+	public function update_bot_language( $new_bot_language ) {
+		$this->slack_slack_bot_language = $new_bot_language;
+		update_user_meta( $this->user_id, self::$slack_slack_bot_language_meta, $new_bot_language );
 	}
 
 	/**

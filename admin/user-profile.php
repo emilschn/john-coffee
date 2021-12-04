@@ -15,7 +15,6 @@ class JohnCoffee_Admin_User_Profile {
 	}
 
 	public static function display_user_options( $profileuser ) {
-		$plugin_url = plugin_dir_url( __FILE__ ) . '..';
 		$user_profile = new JohnCoffee_User_Profile( $profileuser->ID );
 		?>
 		<h2><?php _e( 'John Coffee Slack Management', 'johncoffee' ); ?></h2>
@@ -44,6 +43,22 @@ class JohnCoffee_Admin_User_Profile {
 				</td>
 			</tr>
 		</table>
+
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="user_bot_language"><?php _e( 'Bot language', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<select name="user_bot_language">
+						<option value="fr" <?php selected( $user_profile->get_bot_language() == 'fr' ) ?>>Français</option>
+						<option value="en" <?php selected( $user_profile->get_bot_language() == 'en' ) ?>>English</option>
+					</select>
+					<br>
+					<p class="description"><?php _e( 'The language in which the bot will ask questions.', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
 		<?php
 	}
 	
@@ -54,6 +69,8 @@ class JohnCoffee_Admin_User_Profile {
 			$user_profile->update_slack_webhook_url( $input_user_slack_webhook_url );
 			$input_user_slack_channel_question = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_slack_channel_question' ) ) );
 			$user_profile->update_slack_channel_question( $input_user_slack_channel_question );
+			$input_user_bot_language = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_bot_language' ) ) );
+			$user_profile->update_bot_language( $input_user_bot_language );
 		}
 	}
 }

@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: WPML_EXPORT\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 3.0\n"
+
+msgid "Hello everyone!"
+msgstr "Bonjour tout le monde !"
+
+msgid "A little question for today!"
+msgstr "Une petite question aujourd'hui !"
+
+msgid "Warm greetings!"
+msgstr "Chaleureuses salutations !"
+
+msgid "Hello!"
+msgstr "Bonjour !"
+
+msgid "Hello everybody!"
+msgstr "Hello tout le monde !"
+
+msgid "Helloooooo!"
+msgstr "Helloooooo !"
+
+msgid "Yo!"
+msgstr "Yo !"
+
+msgid "Can you choose"
+msgstr "Est-ce que vous pouvez choisir"
+
+msgid "Can you share"
+msgstr "Pouvez-vous partager"
+
+msgid "Can you speak about"
+msgstr "Pouvez-vous nous parler d'"
+
+msgid "Would you like to share"
+msgstr "Voudriez-vous partager"
+
+msgid "Would you like to speak about"
+msgstr "Voudirez-vous nous parler d'"
+
+msgid "a song"
+msgstr "une chanson"
+
+msgid "a movie"
+msgstr "un film"
+
+msgid "a TV serie (or an anime)"
+msgstr "une série (ou un anime)"
+
+msgid "a quote (or lyrics from a song)"
+msgstr "une citation (ou paroles de chanson)"
+
+msgid "a recipe"
+msgstr "une recette"
+
+msgid "a restaurant"
+msgstr "un restaurant"
+
+msgid "a town"
+msgstr "une ville"
+
+msgid "a country"
+msgstr "un pays"
+
+msgid "an activity"
+msgstr "une activité"
+
+msgid "a sport"
+msgstr "un sport"
+
+msgid "a photo"
+msgstr "une photo"
+
+msgid "a video"
+msgstr "une vidéo"
+
+msgid "a personnality"
+msgstr "une personnalité"
+
+msgid "a book or a comic book"
+msgstr "un livre ou une BD"
+
+msgid "a painting"
+msgstr "une peinture"
+
+msgid "someone close to you"
+msgstr "une personne de votre entourage"
+
+msgid "a cartoon"
+msgstr "un dessin animé"
+
+msgid "a singer"
+msgstr "une chanteuse ou un chanteur"
+
+msgid "a coworker"
+msgstr "un collègue"
+
+msgid "a childhood memory"
+msgstr "un souvenir d'enfance"
+
+msgid "a memory from your yooth"
+msgstr "un souvenir de jeunesse"
+
+msgid "something stupid"
+msgstr "une bêtise"
+
+msgid "a dream"
+msgstr "un rêve"
+
+msgid "a game"
+msgstr "un jeu"
+
+msgid "a video game"
+msgstr "un jeu vidéo"
+
+msgid "an animal"
+msgstr "un animal"
+
+msgid "you recommend"
+msgstr "que vous recommandez"
+
+msgid "that can freak you out"
+msgstr "qui peut vous faire peur"
+
+msgid "that you find splendid"
+msgstr "que vous trouvez magnifique"
+
+msgid "that can make you sad"
+msgstr "qui peut vous rendre triste"
+
+msgid "that is a guilty pleasure"
+msgstr "qui est un plaisir coupable"
+
+msgid "that you liked when you were younger but not anymore"
+msgstr "que vous aimiez jeunes mais plus maintenant"
+
+msgid "that is a great memory"
+msgstr "qui est un super souvenir"
+
+msgid "that can boost your spirit"
+msgstr "qui peut vous filer la pêche"
+
+msgid "that can drive you crazy"
+msgstr "qui vous rend dingue"
+
+msgid "that affects you"
+msgstr "qui vous émeut"
+
+msgid "that questions you"
+msgstr "qui vous questionne"
+
+msgid "that disgusts you"
+msgstr "qui vous dégoute"
+
+msgid "that inspires you"
+msgstr "qui vous inspire"
+
+msgid "from your childhood region or your hometown"
+msgstr "de votre région ou ville natale"
+
+msgid "that everyone likes but not you"
+msgstr "que tout le monde aime mais pas vous"
+
+msgid "that everyone hates but that you like"
+msgstr "que tout le monde déteste mais que vous adorez"

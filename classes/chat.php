@@ -28,7 +28,16 @@ class JohnCoffee_Chat {
 	public function chat_with_hook() {
 		$webhook_url = $this->get_webhook_url();
 		$room = $this->get_channel_name();
-		$message_to_send = JohnCoffee_Random_Question::get_funky( FALSE, FALSE );
+
+		unload_textdomain( 'johncoffee' );
+		if ( $this->user_profile->get_bot_language() == 'fr' ) {
+			$plugin_path = plugin_dir_path( __FILE__ ) . '..';
+			$mofile = 'johncoffee-fr_FR.mo';
+			$mopath = $plugin_path . '/languages/' . $mofile;
+			load_textdomain( 'johncoffee', $mopath );
+		}
+
+		$message_to_send = JohnCoffee_Random_Question::get_funky();
 		$icon = FALSE;
 
 		$parameters = array(
