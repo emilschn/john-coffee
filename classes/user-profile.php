@@ -11,8 +11,15 @@ class JohnCoffee_User_Profile {
 	public static $slack_channel_question_meta = 'slack_channel_question';
 	private $slack_channel_question;
 
-	public static $slack_slack_bot_language_meta = 'slack_bot_language';
-	private $slack_slack_bot_language;
+	public static $slack_bot_language_meta = 'slack_bot_language';
+	private $slack_bot_language;
+
+	public static $slack_timezone_meta = 'slack_timezone';
+	private $slack_timezone;
+
+	public static $slack_time_meta = 'slack_time';
+	private $slack_time_hours;
+	private $slack_time_minutes;
 
 	public static $last_random_question_datetime_meta = 'last_random_question_date';
 	private $last_random_question_datetime;
@@ -55,15 +62,63 @@ class JohnCoffee_User_Profile {
 	 * The bot language
 	 */
 	public function get_bot_language() {
-		if ( empty( $this->slack_slack_bot_language ) ) {
-			$this->slack_slack_bot_language = get_user_meta( $this->user_id, self::$slack_slack_bot_language_meta, TRUE );
+		if ( empty( $this->slack_bot_language ) ) {
+			$this->slack_bot_language = get_user_meta( $this->user_id, self::$slack_bot_language_meta, TRUE );
 		}
-		return $this->slack_slack_bot_language;
+		return $this->slack_bot_language;
 	}
 
 	public function update_bot_language( $new_bot_language ) {
-		$this->slack_slack_bot_language = $new_bot_language;
-		update_user_meta( $this->user_id, self::$slack_slack_bot_language_meta, $new_bot_language );
+		$this->slack_bot_language = $new_bot_language;
+		update_user_meta( $this->user_id, self::$slack_bot_language_meta, $new_bot_language );
+	}
+
+	/**
+	 * The timezone
+	 */
+	public function get_timezone() {
+		if ( empty( $this->slack_timezone ) ) {
+			$this->slack_timezone = get_user_meta( $this->user_id, self::$slack_timezone_meta, TRUE );
+		}
+		return $this->slack_timezone;
+	}
+
+	public function update_timezone( $new_timezone ) {
+		$this->slack_timezone = $new_timezone;
+		update_user_meta( $this->user_id, self::$slack_timezone_meta, $new_timezone );
+	}
+
+	/**
+	 * The messages time
+	 */
+	public function get_message_time() {
+		return get_user_meta( $this->user_id, self::$slack_time_meta, TRUE );
+	}
+	public function get_message_time_hours() {
+		if ( empty( $this->slack_time_hours ) ) {
+			$message_time = $this->get_message_time();
+			if ( !empty( $message_time ) ) {
+				$date_time = DateTime::createFromFormat( 'H:i', $message_time );
+				$this->slack_time_hours = $date_time->format( 'H' );
+			}
+		}
+		return $this->slack_time_hours;
+	}
+	public function get_message_time_minutes() {
+		if ( empty( $this->slack_time_minutes ) ) {
+			$message_time = $this->get_message_time();
+			if ( !empty( $message_time ) ) {
+				$date_time = DateTime::createFromFormat( 'H:i', $message_time );
+				$this->slack_time_minutes = $date_time->format( 'i' );
+			}
+		}
+		return $this->slack_time_minutes;
+	}
+
+	public function update_message_time( $new_message_time_hours, $new_message_time_minutes ) {
+		$this->slack_time_hours = $new_message_time_hours;
+		$this->slack_time_minutes = $new_message_time_minutes;
+		update_user_meta( $this->user_id, self::$slack_time_meta, $new_message_time_hours . ':' . $new_message_time_minutes );
 	}
 
 	/**

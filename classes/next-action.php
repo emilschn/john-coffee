@@ -5,6 +5,7 @@
 class JohnCoffee_Next_Action {
 	public static function launch() {
 		// Search through users to find which ones need to be called
+		date_default_timezone_set( 'Europe/Paris' );
 		$today_date = new DateTime();
 		global $wpdb;
 		
@@ -30,9 +31,10 @@ class JohnCoffee_Next_Action {
 		$buffer = array();
 		foreach ( $users as $user ) {
 			$chat = new JohnCoffee_Chat( $user->ID );
-			if ( !$chat->has_asked_today_random_question() ) {
+			if ( $chat->should_ask_today_random_question() ) {
 				array_push( $buffer, $chat->chat_with_hook() );
 				$user_profile = new JohnCoffee_User_Profile( $user->ID );
+				date_default_timezone_set( 'Europe/Paris' );
 				$user_profile->update_last_random_question_datetime( $today_date->format( 'Y-m-d H:i:s' ) );
 			}
 		}

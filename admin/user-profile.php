@@ -59,6 +59,44 @@ class JohnCoffee_Admin_User_Profile {
 				</td>
 			</tr>
 		</table>
+
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="user_timezone"><?php _e( 'Timezone', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<select name="user_timezone" aria-describedby="timezone-description">
+						<?php echo wp_timezone_choice( $user_profile->get_timezone(), get_user_locale() ); ?>
+					</select>
+					<br>
+					<p id="timezone-description" class="description"><?php _e( 'Choose either a city in the same timezone as you or a UTC (Coordinated Universal Time) time offset.', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
+
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="user_message_time_hour"><?php _e( 'Time when to send messages', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<select name="user_message_time_hours">
+						<?php for ( $i = 0; $i < 24; $i++ ): ?>
+							<option value="<?php echo str_pad( $i, 2, '0', STR_PAD_LEFT ); ?>" <?php selected( $i == $user_profile->get_message_time_hours() ) ?>><?php echo str_pad( $i, 2, '0', STR_PAD_LEFT ); ?></option>
+						<?php endfor; ?>
+					</select>
+					&nbsp;:&nbsp;
+					<select name="user_message_time_minutes">
+						<?php for ( $i = 0; $i < 60; $i++ ): ?>
+							<option value="<?php echo str_pad( $i, 2, '0', STR_PAD_LEFT ); ?>" <?php selected( $i == $user_profile->get_message_time_minutes() ) ?>><?php echo str_pad( $i, 2, '0', STR_PAD_LEFT ); ?></option>
+						<?php endfor; ?>
+					</select>
+					<br>
+					<p class="description"><?php _e( 'The time at which messages are sent.', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
 		<?php
 	}
 	
@@ -71,6 +109,11 @@ class JohnCoffee_Admin_User_Profile {
 			$user_profile->update_slack_channel_question( $input_user_slack_channel_question );
 			$input_user_bot_language = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_bot_language' ) ) );
 			$user_profile->update_bot_language( $input_user_bot_language );
+			$input_user_timezone = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_timezone' ) ) );
+			$user_profile->update_timezone( $input_user_timezone );
+			$user_message_time_hours = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_message_time_hours' ) ) );
+			$user_message_time_minutes = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_message_time_minutes' ) ) );
+			$user_profile->update_message_time( $user_message_time_hours, $user_message_time_minutes );
 		}
 	}
 }

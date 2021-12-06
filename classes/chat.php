@@ -60,80 +60,35 @@ class JohnCoffee_Chat {
 		curl_close( $ch );
 	}
 
-	/*
-	private function get_built_headers() {
-		$headers = array(
-			'Authorization'	=> 'Bearer ' .$this->get_token_id(),
-			'Content-Type'	=> 'application/x-www-form-urlencoded'
-		);
-		return $headers;
-	}
-
-	private function get_users_list() {
-		$api_url = 'https://slack.com/api/conversations.members';
-
-		$api_url .= '?channel=' .$this->get_channel_id();
-
-		$result = wp_remote_post( 
-			$api_url, 
-			array( 
-				'headers'	=> $this->get_built_headers()
-			)
-		);
-		
-		if ( $result[ 'response' ][ 'code' ] == 200 ) {
-			$result_body_decoded = json_decode( $result[ 'body' ] );
-			if ( !empty( $result_body_decoded->ok ) && !empty( $result_body_decoded->members ) ) {
-				return $result_body_decoded->members;
-			}
-		}
-
-		return FALSE;
-	}
-
-	private function send_text( $text ) {
-		$api_url = 'https://slack.com/api/chat.postMessage';
-
-		$api_url .= '?channel=' .$this->get_channel_id();
-		$api_url .= '&text=' .$text;
-
-		$result = wp_remote_post( 
-			$api_url,
-			array(
-				'headers'	=> $this->get_built_headers()
-			)
-		);
-		
-		if ( $result[ 'response' ][ 'code' ] == 200 ) {
-			$result_body_decoded = json_decode( $result[ 'body' ] );
-			if ( !empty( $result_body_decoded->ok ) ) {
-				return TRUE;
-			}
-		}
-
-		return FALSE;
-	}
-
-	public function chat_with_app() {
-		$user_list = $this->get_users_list();
-		if ( !empty( $user_list ) ) {
-			$slack_number_persons = $this->user_profile->get_slack_number_persons();
-			$message_to_send = JohnCoffee_Random_Question::get_funky( $user_list, $slack_number_persons );
-			return $this->send_text( $message_to_send );
-		}
-	}
-	*/
-
-	public function has_asked_today_random_question() {
+	public function should_ask_today_random_question() {
+		date_default_timezone_set( $this->user_profile->get_timezone() );
 		$today_date = new DateTime();
+
+		// On n'a jamais posé de question
 		$last_question_date_str = $this->user_profile->get_last_random_question_datetime();
 		if ( empty( $last_question_date_str ) ) {
-			return false;
+			// On vérifie qu'on a dépassé l'heure d'envoi
+			$message_time = $this->user_profile->get_message_time();
+			$date_time_to_send = DateTime::createFromFormat( 'H:i', $message_time );
+			if ( $date_time_to_send <= $today_date ) {
+				return true;
+			}
 		}
+
+		// On initialise la date de dernier envoi à Paris (fuseau d'enregistrement), puis on repasse sur le fuseau horaire de l'utilisateur
+		date_default_timezone_set( 'Europe/Paris' );
 		$last_question_date = new DateTime( $last_question_date_str );
-		if ( $today_date->format( 'Y-m-d' ) == $last_question_date->format( 'Y-m-d' ) ) {
-			return true;
+		date_default_timezone_set( $this->user_profile->get_timezone() );
+		// Si on est à une date qui dépasse d'un jour la date précédemment enregistrée
+		if ( $today_date->diff( $last_question_date )->days > 0 ) {
+			// On vérifie qu'on a dépassé l'heure d'envoi
+			$message_time = $this->user_profile->get_message_time();
+			$date_time_to_send = DateTime::createFromFormat( 'H:i', $message_time );
+			if ( $date_time_to_send <= $today_date ) {
+				return true;
+			}
 		}
+
 		return false;
 	}
 }
