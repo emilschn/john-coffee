@@ -21,6 +21,7 @@ class JohnCoffee_Random_Question {
 		"Would you like to speak about",
 	);
 
+	private static $index_random_theme;
 	private static $list_theme = array(
 		'a song',
 		'a movie',
@@ -50,6 +51,7 @@ class JohnCoffee_Random_Question {
 		'an animal',
 	);
 
+	private static $index_random_action;
 	private static $list_actions = array(
 		'that you recommend',
 		'that can freak you out',
@@ -81,6 +83,10 @@ class JohnCoffee_Random_Question {
 		return $message;
 	}
 
+	public static function get_id_choosen() {
+		return 'T' . self::$index_random_theme . 'A' . self::$index_random_action;
+	}
+
 	private static function get_intro() {
 		$index_random = rand( 0, count( self::$list_intro ) - 1 );
 		$result = self::$list_intro[ $index_random ];
@@ -94,15 +100,14 @@ class JohnCoffee_Random_Question {
 	}
 
 	private static function get_theme() {
-		$index_random = rand( 0, count( self::$list_theme ) - 1 );
-		$result = self::$list_theme[ $index_random ];
+		self::$index_random_theme = rand( 0, count( self::$list_theme ) - 1 );
+		$result = self::$list_theme[ self::$index_random_theme ];
 		return __( $result, 'johncoffee' );
 	}
 
 	private static function get_action() {
-		$index_random = rand( 0, count( self::$list_actions ) - 1 );
-		$action_str = self::$list_actions[ $index_random ];
+		self::$index_random_action = rand( 0, count( self::$list_actions ) - 1 );
+		$action_str = self::$list_actions[ self::$index_random_action ];
 		return __( $action_str, 'johncoffee' );
 	}
-
 }

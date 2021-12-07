@@ -38,7 +38,6 @@ class JohnCoffee_Next_Action {
 				$user_profile->update_last_random_question_datetime( $today_date->format( 'Y-m-d H:i:s' ) );
 			}
 		}
-		
 		return $buffer;
 	}
 }
