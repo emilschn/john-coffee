@@ -75,6 +75,11 @@ class JohnCoffee_Chat {
 			}
 		}
 
+		// Est-ce qu'on peut envoyer un message aujourd'hui d'après les règlages ?
+		if ( !$this->user_profile->can_send_when_day( $today_date->format( 'N' ) ) ) {
+			return false;
+		}
+
 		// On initialise la date de dernier envoi à Paris (fuseau d'enregistrement), puis on repasse sur le fuseau horaire de l'utilisateur
 		date_default_timezone_set( 'Europe/Paris' );
 		$last_question_date = new DateTime( $last_question_date_str );

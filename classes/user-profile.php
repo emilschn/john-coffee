@@ -21,6 +21,9 @@ class JohnCoffee_User_Profile {
 	private $slack_time_hours;
 	private $slack_time_minutes;
 
+	public static $slack_days_meta = 'slack_days';
+	private $slack_days;
+
 	public static $last_random_question_datetime_meta = 'last_random_question_date';
 	private $last_random_question_datetime;
 	
@@ -119,6 +122,34 @@ class JohnCoffee_User_Profile {
 		$this->slack_time_hours = $new_message_time_hours;
 		$this->slack_time_minutes = $new_message_time_minutes;
 		update_user_meta( $this->user_id, self::$slack_time_meta, $new_message_time_hours . ':' . $new_message_time_minutes );
+	}
+
+	/**
+	 * The messages days
+	 */
+	public function can_send_when_day( $day_number ) {
+		if ( empty( $this->slack_days ) ) {
+			$saved_meta = get_user_meta( $this->user_id, self::$slack_days_meta, TRUE );
+			if ( empty( $saved_meta ) ) {
+				$this->slack_days = array(
+					'1' => '1',
+					'2' => '1',
+					'3' => '1',
+					'4' => '1',
+					'5' => '1',
+					'6' => '0',
+					'7' => '0'
+				);
+			} else {
+				$this->slack_days = json_decode( $saved_meta, TRUE );
+			}
+		}
+		return $this->slack_days[ $day_number ];
+	}
+
+	public function update_message_days( $days_list ) {
+		$this->slack_days = $days_list;
+		update_user_meta( $this->user_id, self::$slack_days_meta, json_encode( $days_list ) );
 	}
 
 	/**

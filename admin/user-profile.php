@@ -97,6 +97,25 @@ class JohnCoffee_Admin_User_Profile {
 				</td>
 			</tr>
 		</table>
+
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="user_message_day"><?php _e( 'Days when to send messages', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" name="message_day_1" value="1" <?php checked( $user_profile->can_send_when_day( 1 ) ); ?>><?php _e( 'Monday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_2" value="2" <?php checked( $user_profile->can_send_when_day( 2 ) ); ?>><?php _e( 'Tuesday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_3" value="3" <?php checked( $user_profile->can_send_when_day( 3 ) ); ?>><?php _e( 'Wednesday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_4" value="4" <?php checked( $user_profile->can_send_when_day( 4 ) ); ?>><?php _e( 'Thursday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_5" value="5" <?php checked( $user_profile->can_send_when_day( 5 ) ); ?>><?php _e( 'Friday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_6" value="6" <?php checked( $user_profile->can_send_when_day( 6 ) ); ?>><?php _e( 'Saturday', 'johncoffee' ); ?><br>
+					<input type="checkbox" name="message_day_7" value="7" <?php checked( $user_profile->can_send_when_day( 7 ) ); ?>><?php _e( 'Sunday', 'johncoffee' ); ?><br>
+					<br>
+					<p class="description"><?php _e( 'The days when messages are sent.', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
 		<?php
 	}
 	
@@ -114,6 +133,12 @@ class JohnCoffee_Admin_User_Profile {
 			$user_message_time_hours = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_message_time_hours' ) ) );
 			$user_message_time_minutes = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_message_time_minutes' ) ) );
 			$user_profile->update_message_time( $user_message_time_hours, $user_message_time_minutes );
+			$days_list = array();
+			for ( $i = 1; $i <= 7; $i++ ) {
+				$input_message_day = filter_input( INPUT_POST, 'message_day_' . $i );
+				$days_list[ $i ] = ( !empty( $input_message_day ) ) ? '1' : '0';
+				$user_profile->update_message_days( $days_list );
+			}
 		}
 	}
 }
