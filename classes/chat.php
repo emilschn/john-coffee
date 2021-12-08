@@ -39,7 +39,6 @@ class JohnCoffee_Chat {
 
 		$random_question = new JohnCoffee_Random_Question( $this->user_profile->get_questions_asked_previously() );
 		$message_to_send = $random_question->get_message();
-		exit( $message_to_send );
 		$this->user_profile->update_questions_asked_previously( $random_question->get_id_choosen() );
 		
 
