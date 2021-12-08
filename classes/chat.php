@@ -11,24 +11,33 @@ class JohnCoffee_Chat {
 		$this->user_profile = new JohnCoffee_User_Profile( $user_id );
 	}
 
-	public function get_channel_name() {
+	private function get_channel_name() {
 		if ( !isset( $this->channel_name ) ) {
 			$this->channel_name = $this->user_profile->get_slack_channel_question();
 		}
 		return $this->channel_name;
 	}
 
-	public function get_webhook_url() {
+	private function get_webhook_url() {
 		if ( !isset( $this->webhook_url ) ) {
-			$this->webhook_url = $this->user_profile->get_slack_webhook_url();
+			if ( $this->is_slack() ) {
+				$this->webhook_url = $this->user_profile->get_slack_webhook_url();
+			} else {
+				$this->webhook_url = $this->user_profile->get_teams_webhook_url();
+			}
 		}
 		return $this->webhook_url;
 	}
 
-	public function chat_with_hook() {
-		$webhook_url = $this->get_webhook_url();
-		$room = $this->get_channel_name();
+	private function is_slack() {
+		$slack_webhook_url = $this->user_profile->get_slack_webhook_url();
+		return !empty( $slack_webhook_url );
+	}
 
+
+	// doc teams : https://docs.microsoft.com/fr-fr/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook
+	public function chat_with_hook() {
+		// Init user language
 		unload_textdomain( 'johncoffee' );
 		if ( $this->user_profile->get_bot_language() == 'fr' ) {
 			$plugin_path = plugin_dir_path( __FILE__ ) . '..';
@@ -37,23 +46,39 @@ class JohnCoffee_Chat {
 			load_textdomain( 'johncoffee', $mopath );
 		}
 
+		// Init text to send
 		$random_question = new JohnCoffee_Random_Question( $this->user_profile->get_questions_asked_previously() );
 		$message_to_send = $random_question->get_message();
 		$this->user_profile->update_questions_asked_previously( $random_question->get_id_choosen() );
 		
+		// Init request parameters
+		$webhook_url = $this->get_webhook_url();
+		$ch = curl_init( $webhook_url );
 
 		$parameters = array(
-			'channel'	=> '#' . $room,
 			'text'		=> $message_to_send
 		);
-		$icon = FALSE;
-		if ( !empty( $icon ) ) {
-			$parameters[ 'icon_emoji' ] = $icon;
+
+		if ( $this->is_slack() ) {
+			$room = $this->get_channel_name();
+			$parameters[ 'channel' ] = '#' . $room;
+			$icon = FALSE;
+			if ( !empty( $icon ) ) {
+				$parameters[ 'icon_emoji' ] = $icon;
+			}
+			$data = "payload=" . json_encode( $parameters );
+
+		} else {
+			// curl.exe -H "Content-Type:application/json" -d "{'text':'Hello World'}" <YOUR WEBHOOK URL>
+			$data = json_encode( $parameters );
+			curl_setopt($ch, CURLOPT_POST, 1);
+
+			$headers = array();
+			$headers[] = 'Content-Type: application/json';
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		}
 
-		$data = "payload=" . json_encode( $parameters );
-
-		$ch = curl_init( $webhook_url );
+		// Do request
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'POST' );
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );

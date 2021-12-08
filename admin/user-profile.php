@@ -17,7 +17,7 @@ class JohnCoffee_Admin_User_Profile {
 	public static function display_user_options( $profileuser ) {
 		$user_profile = new JohnCoffee_User_Profile( $profileuser->ID );
 		?>
-		<h2><?php _e( 'John Coffee Slack Management', 'johncoffee' ); ?></h2>
+		<h2><?php _e( 'John Coffee Management', 'johncoffee' ); ?></h2>
 		<table class="form-table">
 			<tr>
 				<th>
@@ -40,6 +40,19 @@ class JohnCoffee_Admin_User_Profile {
 					<input type="text" name="user_slack_channel_question" value="<?php echo $user_profile->get_slack_channel_question(); ?>" class="regular-text" />
 					<br>
 					<p class="description"><?php _e( 'The name of the channel where random questions are posted. You need to specify this channel when creating the Webhook.', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
+
+		<table class="form-table">
+			<tr>
+				<th>
+					<label for="user_teams_webhook_url"><?php _e( 'Teams Webhook URL', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<input type="text" name="user_teams_webhook_url" value="<?php echo $user_profile->get_teams_webhook_url(); ?>" class="regular-text" />
+					<br>
+					<p class="description"><?php _e( 'The webhook URL provided by MS Teams', 'johncoffee' ); ?></p>
 				</td>
 			</tr>
 		</table>
@@ -126,6 +139,8 @@ class JohnCoffee_Admin_User_Profile {
 			$user_profile->update_slack_webhook_url( $input_user_slack_webhook_url );
 			$input_user_slack_channel_question = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_slack_channel_question' ) ) );
 			$user_profile->update_slack_channel_question( $input_user_slack_channel_question );
+			$input_user_teams_webhook_url = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_teams_webhook_url' ) ) );
+			$user_profile->update_teams_webhook_url( $input_user_teams_webhook_url );
 			$input_user_bot_language = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_bot_language' ) ) );
 			$user_profile->update_bot_language( $input_user_bot_language );
 			$input_user_timezone = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_timezone' ) ) );

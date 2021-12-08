@@ -11,6 +11,9 @@ class JohnCoffee_User_Profile {
 	public static $slack_webhook_url_meta = 'slack_webhook_url';
 	private $slack_webhook_url;
 
+	public static $teams_webhook_url_meta = 'teams_webhook_url';
+	private $teams_webhook_url;
+
 	public static $slack_channel_question_meta = 'slack_channel_question';
 	private $slack_channel_question;
 
@@ -81,6 +84,21 @@ class JohnCoffee_User_Profile {
 	public function update_slack_webhook_url( $new_webhook_url ) {
 		$this->slack_webhook_url = $new_webhook_url;
 		$this->update_meta( self::$slack_webhook_url_meta, $new_webhook_url );
+	}
+	
+	/**
+	 * Teams Webhook URL
+	 */
+	public function get_teams_webhook_url() {
+		if ( empty( $this->teams_webhook_url ) ) {
+			$this->teams_webhook_url = $this->get_meta( self::$teams_webhook_url_meta );
+		}
+		return $this->teams_webhook_url;
+	}
+
+	public function update_teams_webhook_url( $new_webhook_url ) {
+		$this->teams_webhook_url = $new_webhook_url;
+		$this->update_meta( self::$teams_webhook_url_meta, $new_webhook_url );
 	}
 	
 	/**
