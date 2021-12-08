@@ -105,6 +105,9 @@ class JohnCoffee_User_Profile {
 		if ( empty( $this->slack_bot_language ) ) {
 			$this->slack_bot_language = $this->get_meta( self::$slack_bot_language_meta );
 		}
+		if ( empty( $this->slack_bot_language ) ) {
+			$this->slack_bot_language = 'fr';
+		}
 		return $this->slack_bot_language;
 	}
 

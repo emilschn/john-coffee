@@ -45,7 +45,7 @@ msgid "Would you like to share"
 msgstr "Voudriez-vous partager"
 
 msgid "Would you like to speak about"
-msgstr "Voudirez-vous nous parler d'"
+msgstr "Voudriez-vous nous parler d'"
 
 msgid "a song"
 msgstr "une chanson"
@@ -172,3 +172,132 @@ msgstr "que tout le monde aime mais pas vous"
 
 msgid "that everyone hates but that you like"
 msgstr "que tout le monde déteste mais que vous adorez"
+
+msgid "Could you share a song that you discovered recently?"
+msgstr "Pouvez-vous partager une chanson que vous avez découverte récemment ?"
+
+msgid "What is the song that you can&nbsp;t stop listening to at the moment?"
+msgstr "Quelle est la chanson que vous écoutez le plus en ce moment ?"
+
+msgid "Who is the singer that you can&nbsp;t stop listening to at the moment?"
+msgstr "Quel est l'artiste musical vous écoutez le plus en ce moment ?"
+
+msgid "What is the last movie that you saw and liked?"
+msgstr "Quel est le dernier film que vous avez vu et aimé ?"
+
+msgid "What is the last movie that you saw and hated?"
+msgstr "Quel est le dernier film que vous avez vu et détesté ?"
+
+msgid "Are you watching a TV serie or anime at the moment? Do you like it?"
+msgstr "Est-ce que vous regardez une série télé ou un anime en ce moment ? Vous aimez ?"
+
+msgid "Are you playing a game or video game at the moment? Do you like it?"
+msgstr "Est-ce que vous jouez à un jeu ou un jeu vidéo en ce moment ? Vous aimez ?"
+
+msgid "What is the last cartoon that you saw and liked?"
+msgstr "Quel est le dernier dessin animé que vous avez vu et aimé ?"
+
+msgid "What is the last cartoon that you saw and hated?"
+msgstr "Quel est le dernier dessin animé que vous avez vu et détesté ?"
+
+msgid "What is the last recipe you cooked?"
+msgstr "Quelle est la dernière recette que vous avez cuisinée ?"
+
+msgid "What is the last recipe you failed?"
+msgstr "Quelle est la dernière recette que vous avez loupée ?"
+
+msgid "Have you discovered a great restaurant recently?"
+msgstr "Avez-vous découvert un super restaurant dernièrement ?"
+
+msgid "Is there an activity that you like to practice these days?"
+msgstr "Y'a-t-il une activité que vous aimez pratiquer en ce moment ?"
+
+msgid "Is there a sport that you discovered recently?"
+msgstr "Y'a-t-il un sport que vous avez découvert récemment ?"
+
+msgid "Could you share a video that you liked this month?"
+msgstr "Pouvez-vous partager une vidéo que vous avez aimé ce mois-ci ?"
+
+msgid "What is the last book or comic book that you read and liked?"
+msgstr "Quel est le dernier livre (ou BD) que vous avez lu et aimé ?"
+
+msgid "What is the last book or comic book that you read and hated?"
+msgstr "Quel est le dernier livre (ou BD) que vous avez lu et détesté ?"
+
+msgid "Have you discovered a painting recently?"
+msgstr "Avez-vous découvert une peinture dernièrement ?"
+
+msgid "Did you take a good picture recently?"
+msgstr "Avez-vous pris une super photo récemment ?"
+
+msgid "Have you discovered a strange animal recently?"
+msgstr "Avez-vous découvert un animal bizarre dernièrement ?"
+
+msgid "What is your all time favorite song?"
+msgstr "Quelle est votre chanson préférée ?"
+
+msgid "What is your all time favorite music album?"
+msgstr "Quelle est votre album de musique préféré ?"
+
+msgid "What is your all time favorite singer or band?"
+msgstr "Quelle est votre artiste musical (solo ou groupe) préféré ?"
+
+msgid "What is your all time favorite movie?"
+msgstr "Quel est votre film préféré ?"
+
+msgid "What is the movie that you watched the most times?"
+msgstr "Quel est le film que vous avez vu le plus de fois ?"
+
+msgid "What is your all time favorite cartoon?"
+msgstr "Quel est votre dessin animé préféré ?"
+
+msgid "What is the cartoon that you watched the most times?"
+msgstr "Quel est le dessin animé que vous avez vu le plus de fois ?"
+
+msgid "What TV show or anime can you watch over and over?"
+msgstr "Quelle série télé ou anime pouvez-vous regarer en permanence ?"
+
+msgid "What recipe could you eat all the time?"
+msgstr "Quelle recette pouvez-vous manger tout le temps ?"
+
+msgid "Which country do you like to visit the most?"
+msgstr "Quel pays aimez-vous visiter le plus ?"
+
+msgid "In which town do you feel like you are at home?"
+msgstr "Dans quelle ville vous sentez-vous le plus chez vous ?"
+
+msgid "What sport do you like to practice the most?"
+msgstr "Quel est le sport que vous aimez le plus pratiquer ?"
+
+msgid "What sport do you like to watch the most?"
+msgstr "Quel est le sport que vous aimez le plus regarder ?"
+
+msgid "Is there a picture that is your favorite?"
+msgstr "Est-ce qu'il y a une photo qui est votre préférée ?"
+
+msgid "Is there a personnality that you would like to meet?"
+msgstr "Est-ce qu'il y a une personnalité que vous aimeriez rencontrer ?"
+
+msgid "Is there a dead personnality that you would like to resurrect?"
+msgstr "Est-ce qu'il y a une personnalité morte que vous aimeriez ressuciter ?"
+
+msgid "What is your all time favorite book?"
+msgstr "Quel est votre livre préféré ?"
+
+msgid "What is your all time favorite comic book?"
+msgstr "Quelle est votre BD préférée ?"
+
+msgid "What is your all time favorite painting?"
+msgstr "Quelle est votre peinture préférée ?"
+
+msgid "What is your all time favorite game?"
+msgstr "Quel est votre jeu préféré ?"
+
+msgid "What is your all time favorite video game?"
+msgstr "Quel est votre jeu vidéo préféré ?"
+
+msgid "What is the video game that you played the most?"
+msgstr "A quel jeu vidéo avez-vous joué le plus ?"
+
+msgid "What is the animal that you find the cutest?"
+msgstr "Quel est l'animal que vous trouvez le plus mignon ?"

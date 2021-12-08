@@ -37,14 +37,10 @@ class JohnCoffee_Chat {
 			load_textdomain( 'johncoffee', $mopath );
 		}
 
-		$message_to_send = '';
-		while ( empty( $message_to_send ) ) {
-			$message_to_send = JohnCoffee_Random_Question::get_funky();
-			if ( !$this->user_profile->can_ask_question_id( JohnCoffee_Random_Question::get_id_choosen() ) ) {
-				$message_to_send = '';
-			}
-		}
-		$this->user_profile->update_questions_asked_previously( JohnCoffee_Random_Question::get_id_choosen() );
+		$random_question = new JohnCoffee_Random_Question( $this->user_profile->get_questions_asked_previously() );
+		$message_to_send = $random_question->get_message();
+		exit( $message_to_send );
+		$this->user_profile->update_questions_asked_previously( $random_question->get_id_choosen() );
 		
 
 		$parameters = array(
