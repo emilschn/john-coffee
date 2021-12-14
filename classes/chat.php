@@ -3,11 +3,13 @@
  * This is the hub which decides which text will be sent
  */
 class JohnCoffee_Chat {
+	private $user_profile;
 	private $user_profile_channel;
 	private $channel_name;
 	private $webhook_url;
 
 	public function __construct( $user_id, $index ) {
+		$this->user_profile = new JohnCoffee_User_Profile( $user_id, $index );
 		$this->user_profile_channel = new JohnCoffee_User_Profile_Channel( $user_id, $index );
 	}
 
@@ -90,7 +92,7 @@ class JohnCoffee_Chat {
 
 	public function should_ask_today_random_question() {
 		// Jamais si l'utilisateur est désactivé
-		if ( $this->user_profile_channel->get_status() == 'disabled' ) {
+		if ( $this->user_profile->get_status() == 'disabled' ) {
 			return false;
 		}
 
