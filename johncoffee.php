@@ -35,6 +35,7 @@ class JohnCoffee_Starter {
 
 		// User Profile management
 		require_once $classes_path . 'user-profile.php';
+		require_once $classes_path . 'user-profile-channel.php';
 		require_once $admin_path . 'user-profile.php';
 
 		// Random questions
