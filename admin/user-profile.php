@@ -21,6 +21,23 @@ class JohnCoffee_Admin_User_Profile {
 		<table class="form-table">
 			<tr>
 				<th>
+					<label for="user_johncoffee_status"><?php _e( 'Statut', 'johncoffee' ); ?></label>
+				</th>
+				<td>
+					<select name="user_johncoffee_status">
+						<option value="disabled" <?php selected( $user_profile->get_status() == 'disabled' ); ?>"><?php _e( 'Disabled', 'johncoffee' ); ?></option>
+						<option value="free" <?php selected( $user_profile->get_status() == '' || $user_profile->get_status() == 'free' ); ?>"><?php _e( 'Free', 'johncoffee' ); ?></option>
+						<option value="paid" <?php selected( $user_profile->get_status() == 'paid' ); ?>"><?php _e( 'Paid', 'johncoffee' ); ?></option>
+						<option value="full" <?php selected( $user_profile->get_status() == 'full' ); ?>"><?php _e( 'Full', 'johncoffee' ); ?></option>
+					</select>
+					<br>
+					<p class="description"><?php _e( 'The webhook URL provided by Slack', 'johncoffee' ); ?></p>
+				</td>
+			</tr>
+		</table>
+		<table class="form-table">
+			<tr>
+				<th>
 					<label for="user_slack_webhook_url"><?php _e( 'Slack Webhook URL', 'johncoffee' ); ?></label>
 				</th>
 				<td>
@@ -135,6 +152,8 @@ class JohnCoffee_Admin_User_Profile {
 	public static function save_user_options( $user_id ) {
 		if ( current_user_can( 'edit_user', $user_id ) ) {
 			$user_profile = new JohnCoffee_User_Profile( $user_id );
+			$input_user_johncoffee_status = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_johncoffee_status' ) ) );
+			$user_profile->update_status( $input_user_johncoffee_status );
 			$input_user_slack_webhook_url = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_slack_webhook_url' ) ) );
 			$user_profile->update_slack_webhook_url( $input_user_slack_webhook_url );
 			$input_user_slack_channel_question = esc_attr( sanitize_text_field( filter_input( INPUT_POST, 'user_slack_channel_question' ) ) );

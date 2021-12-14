@@ -89,6 +89,11 @@ class JohnCoffee_Chat {
 	}
 
 	public function should_ask_today_random_question() {
+		// Jamais si l'utilisateur est désactivé
+		if ( $this->user_profile->get_status() == 'disabled' ) {
+			return false;
+		}
+
 		date_default_timezone_set( $this->user_profile->get_timezone() );
 		$today_date = new DateTime();
 

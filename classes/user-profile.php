@@ -5,6 +5,9 @@
 class JohnCoffee_User_Profile {
 	private $user_id;
 	
+	public static $status_meta = 'johncoffee_status';
+	private $status;
+
 	public static $questions_asked_previously_meta = 'questions_asked_previously';
 	private $list_questions_asked_previously;
 
@@ -69,6 +72,21 @@ class JohnCoffee_User_Profile {
 	public function can_ask_question_id( $question_id ) {
 		$list_questions_asked_previously = $this->get_questions_asked_previously();
 		return empty( $list_questions_asked_previously[ $question_id ] );
+	}
+	
+	/**
+	 * Slack Webhook URL
+	 */
+	public function get_status() {
+		if ( empty( $this->status ) ) {
+			$this->status = $this->get_meta( self::$status_meta );
+		}
+		return $this->status;
+	}
+
+	public function update_status( $new_status ) {
+		$this->status = $new_status;
+		$this->update_meta( self::$status_meta, $new_status );
 	}
 	
 	/**
