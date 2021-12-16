@@ -125,6 +125,9 @@ msgstr "un jeu vidéo"
 msgid "an animal"
 msgstr "un animal"
 
+msgid "a pokemon"
+msgstr "un pokemon"
+
 msgid "you recommend"
 msgstr "que vous recommandez"
 
